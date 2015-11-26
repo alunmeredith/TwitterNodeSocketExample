@@ -10,15 +10,14 @@ function handler (req, res) {
 }
 
 var T = new Twit({
-    consumer_key:         'REQUIRED'
-  , consumer_secret:      'REQUIRED'
-  , access_token:         'REQUIRED'
-  , access_token_secret:  'REQUIRED'
+    consumer_key:         'xWectP9N3cmMr1sMSqK3jr5Xe'
+  , consumer_secret:      'qmerEgii1COZnxvIh8gjk1e2Z7l5n0YH1fpDmoRrluMSqMtwiQ'
+  , access_token:         '3881191-x6AfPKs4SoYEoCmJad6kMghOs6HqoliymsAS6EMbdf'
+  , access_token_secret:  'pnzhWb1zAKuucZ5LfqKqE9HlLRQ82B3rbbdhvmjGDPmWA'
 });
 
 //###################################
-//If you want to use the search API (REST) then you can use this! line below, 
-//In order to get data, you need to periodically pull data. Create an interval timer!
+//If you want to use the search API (REST) then you can use this! line below, /In order to get data, you need to periodically pull data. Create an interval timer!
 // T.get('search/tweets', { q: '#datascience', count: 100 }, function(err, data, response) {
 //   //console.log(data)
 // });
@@ -41,11 +40,12 @@ var stream = T.stream('statuses/filter', { track: ['datascience', 'data', 'data 
 console.log("INFO: Got to the point where stream is about to emit to tweets");
 
 stream.on('tweet', function (tweet) {
-  //console.log(tweet);
+//  console.log(tweet);
 // emitMsg('tweets', tweet);
-    	preProcessData(tweet);
-   		 //io.emit('tweets',tweet);
-        //io.emit('tweets',tweet);
+   
+// Here we can do some pre-processing of the data to ensure that the tweet is formatted correctly, etc
+     preProcessData(tweet);
+     io.emit('tweets',tweet);
 });
 
 
